@@ -1308,10 +1308,10 @@ else
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
 endif
 
-ifeq ($(TARGET_OTA_ASSERT_SKIP),true)
-    $(INTERNAL_OTA_PACKAGE_TARGET): skip_assert := true
+ifeq ($(TARGET_OTA_ASSERT_DEVICE),)
+    $(INTERNAL_OTA_PACKAGE_TARGET): override_device := auto
 else
-    $(INTERNAL_OTA_PACKAGE_TARGET): skip_assert := false
+    $(INTERNAL_OTA_PACKAGE_TARGET): override_device := $(TARGET_OTA_ASSERT_DEVICE)
 endif
 
 $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
